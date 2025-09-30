@@ -34,9 +34,9 @@ The purpose of the analysis is to:
 
 * Dataset contained two sheets:
 
-* - UserProfile
+ - UserProfile
 
-* - Viewership
+ - Viewership
 
 **Step 2: Data Preparation**
 
