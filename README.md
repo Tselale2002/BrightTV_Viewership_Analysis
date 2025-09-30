@@ -1,4 +1,4 @@
-## BrightTV Viewership Case Study Project
+## BrightTV Viewership Analysis Case Study Project
 **📌 Objective**
 
 The objective of this case study is to support BrightTV’s CEO and the Customer Value Management (CVM) team in achieving their goal of growing the company’s subscription base during the current financial year.
@@ -34,9 +34,9 @@ The purpose of the analysis is to:
 
 * Dataset contained two sheets:
 
- - UserProfile
+  - UserProfile
 
- - Viewership
+  - Viewership
 
 **Step 2: Data Preparation**
 
