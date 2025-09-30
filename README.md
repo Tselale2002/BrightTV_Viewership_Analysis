@@ -44,15 +44,15 @@ The purpose of the analysis is to:
 
 * Saved as CSV files:
 
-- BrightTV-Dataset_UserProfile.csv
+  - BrightTV-Dataset_UserProfile.csv
 
-- BrightTV-Dataset_Viewership.csv
+  - BrightTV-Dataset_Viewership.csv
 
 * Cleaned UserProfile data:
 
-- Removed extra spaces.
+  - Removed extra spaces.
 
-- Replaced semicolons ; with commas , for compatibility.
+  - Replaced semicolons ; with commas , for compatibility.
 
 * Ensured datasets were ready for Snowflake loading.
 
@@ -64,21 +64,21 @@ The purpose of the analysis is to:
 
 * Parsed timestamps into multiple granularities:
 
-- RECORD_TS → full timestamp
+  - RECORD_TS → full timestamp
 
-- RECORD_DATE → date only
+  - RECORD_DATE → date only
 
-- RECORD_TIME → time only
+  - RECORD_TIME → time only
 
-- DAY_OF_WEEK → day name
+  - DAY_OF_WEEK → day name
 
 * Created session metrics:
 
-- TOTAL_SESSIONS (count of sessions)
+  - TOTAL_SESSIONS (count of sessions)
 
-- TOTAL_DURATION_MIN (sum of minutes)
+  - TOTAL_DURATION_MIN (sum of minutes)
 
-- AVG_DURATION_MIN (average session duration)
+  - AVG_DURATION_MIN (average session duration)
 
 * Defined duration buckets: Very Short, Short, Medium, Long, Very Long.
 
@@ -109,40 +109,6 @@ Visuals used: Line charts, bar charts, stacked bars, heatmaps, tables, maps, sca
 
 **Step 6: Presentation Report (Canva)**
 
-Slides summarized:
-
-Data preparation and cleaning steps.
-
-Transformation process in Snowflake (SQL query overview).
-
-Key insights from dashboards.
-
-Recommendations for content and growth strategies.
-
-Visual aids:
-
-Charts from Looker dashboards.
-
-Infographics for metrics and demographics.
-
-Maps for geographic insights.
-
-Color-coded duration and age buckets.
-
-Step 7: Optional Enhancements
-
-Annotated slides with key findings.
-
-Highlighted low-consumption days and peak usage times.
-
-Added summary KPIs:
-
-Total users
-
-Average session duration
-
-Most popular channels
-
-📑 Repository Note
+**📑 Conclusion**
 
 The raw data, processed data, SQL codes, and the final presentation report will be uploaded in this repository’s files for reference.
