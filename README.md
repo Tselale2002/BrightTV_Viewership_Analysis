@@ -7,25 +7,25 @@ The objective of this case study is to support BrightTV’s CEO and the Customer
 
 The purpose of the analysis is to:
 
-Provide insights on user and usage trends of BrightTV.
+* Provide insights on user and usage trends of BrightTV.
 
-Identify factors influencing consumption.
+* Identify factors influencing consumption.
 
-Recommend content strategies to increase consumption on low-usage days.
+* Recommend content strategies to increase consumption on low-usage days.
 
-Suggest initiatives to grow BrightTV’s user base.
+* Suggest initiatives to grow BrightTV’s user base.
 
 **🛠️ Tools & Technologies**
 
-Excel – Initial dataset review and sheet separation.
+* Excel – Initial dataset review and sheet separation.
 
-Notepad – Replaced semicolons ; with commas , for CSV compatibility.
+* Notepad – Replaced semicolons ; with commas , for CSV compatibility.
 
-Snowflake – Data loading, cleaning, and transformation.
+* Snowflake – Data loading, cleaning, and transformation.
 
-Google Looker Studio – Dashboard creation and visualization.
+* Google Looker Studio – Dashboard creation and visualization.
 
-Canva – Final presentation design.
+* Canva – Final presentation design.
 
 **📂 Project Mind Map**
 **Step 1: Data Acquisition**
@@ -34,80 +34,80 @@ Canva – Final presentation design.
 
 * Dataset contained two sheets:
 
-UserProfile
+- UserProfile
 
-Viewership
+- Viewership
 
-Step 2: Data Preparation
+**Step 2: Data Preparation**
 
-Separated sheets into individual datasets.
+* Separated sheets into individual datasets.
 
-Saved as CSV files:
+* Saved as CSV files:
 
-BrightTV-Dataset_UserProfile.csv
+- BrightTV-Dataset_UserProfile.csv
 
-BrightTV-Dataset_Viewership.csv
+- BrightTV-Dataset_Viewership.csv
 
-Cleaned UserProfile data:
+* Cleaned UserProfile data:
 
-Removed extra spaces.
+- Removed extra spaces.
 
-Replaced semicolons ; with commas , for compatibility.
+- Replaced semicolons ; with commas , for compatibility.
 
-Ensured datasets were ready for Snowflake loading.
+* Ensured datasets were ready for Snowflake loading.
 
-Step 3: Data Loading & Transformation (Snowflake)
+**Step 3: Data Loading & Transformation (Snowflake)**
 
-Loaded CSV datasets into Snowflake.
+* Loaded CSV datasets into Snowflake.
 
-Merged Viewership and UserProfile on UserID.
+* Merged Viewership and UserProfile on UserID.
 
-Parsed timestamps into multiple granularities:
+* Parsed timestamps into multiple granularities:
 
-RECORD_TS → full timestamp
+- RECORD_TS → full timestamp
 
-RECORD_DATE → date only
+- RECORD_DATE → date only
 
-RECORD_TIME → time only
+- RECORD_TIME → time only
 
-DAY_OF_WEEK → day name
+- DAY_OF_WEEK → day name
 
-Created session metrics:
+* Created session metrics:
 
-TOTAL_SESSIONS (count of sessions)
+- TOTAL_SESSIONS (count of sessions)
 
-TOTAL_DURATION_MIN (sum of minutes)
+- TOTAL_DURATION_MIN (sum of minutes)
 
-AVG_DURATION_MIN (average session duration)
+- AVG_DURATION_MIN (average session duration)
 
-Defined duration buckets: Very Short, Short, Medium, Long, Very Long.
+* Defined duration buckets: Very Short, Short, Medium, Long, Very Long.
 
-Defined age buckets: Kids, Teens, Youth, Adults, Senior Citizen.
+* Defined age buckets: Kids, Teens, Youth, Adults, Senior Citizen.
 
-Retained demographics: Gender, Race, Province.
+* Retained demographics: Gender, Race, Province.
 
-Aggregated data by: UserID, Channel, Date, Time, Duration Bucket, Demographics.
+* Aggregated data by: UserID, Channel, Date, Time, Duration Bucket, Demographics.
 
-Step 4: Processed Data Export
+**Step 4: Processed Data Export**
 
-Downloaded processed dataset from Snowflake.
+* Downloaded processed dataset from Snowflake.
 
-Saved as CSV for visualization in Google Looker Studio.
+* Saved as CSV for visualization in Google Looker Studio.
 
-Step 5: Dashboards Creation (Google Looker Studio)
+**Step 5: Dashboards Creation (Google Looker Studio)**
 
-User & Usage Trends – Sessions and duration over time.
+* User & Usage Trends – Sessions and duration over time.
 
-Demographics & Consumption Patterns – Age, gender, race analysis.
+* Demographics & Consumption Patterns – Age, gender, race analysis.
 
-Peak Hours / Low-Consumption Days – Time-based heatmaps and tables.
+* Peak Hours / Low-Consumption Days – Time-based heatmaps and tables.
 
-Channel & Geographic Insights – Top channels and provincial engagement.
+* Channel & Geographic Insights – Top channels and provincial engagement.
 
-Filters included: Date, Channel, Province, Age, Gender, Race, Duration Bucket.
+* Filters included: Date, Channel, Province, Age, Gender, Race, Duration Bucket.
 Visuals used: Line charts, bar charts, stacked bars, heatmaps, tables, maps, scatter plots.
 
-Step 6: Presentation Report (Canva)
+**Step 6: Presentation Report (Canva)**
 
 Slides summarized:
 
