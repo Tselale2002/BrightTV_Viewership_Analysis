@@ -2,12 +2,22 @@ SELECT
     v."UserID",
     v."CHANNEL2" AS CHANNEL,
 
-    -- Parse timestamp into different granularities
+ --  Converted timestamps into different levels of detail (date, time, day, month)
+    
     TO_TIMESTAMP(v.CONVERTEDRECORDDATE2, 'YYYY/MM/DD HH24:MI') AS RECORD_TS,
     TO_DATE(TO_TIMESTAMP(v.CONVERTEDRECORDDATE2, 'YYYY/MM/DD HH24:MI')) AS RECORD_DATE,
     CAST(TO_TIMESTAMP(v.CONVERTEDRECORDDATE2, 'YYYY/MM/DD HH24:MI') AS TIME) AS RECORD_TIME,
     DAYNAME(TO_DATE(TO_TIMESTAMP(v.CONVERTEDRECORDDATE2, 'YYYY/MM/DD HH24:MI'))) AS DAY_OF_WEEK,
-    TO_CHAR(TO_TIMESTAMP(v.CONVERTEDRECORDDATE2, 'YYYY/MM/DD HH24:MI'), 'MM') AS RECORD_MONTH,  -- New column
+    TO_CHAR(TO_TIMESTAMP(v.CONVERTEDRECORDDATE2, 'YYYY/MM/DD HH24:MI'), 'MM') AS RECORD_MONTH,  
+
+    -- Time of Day segmentation
+    CASE
+        WHEN EXTRACT(HOUR FROM TO_TIMESTAMP(v.CONVERTEDRECORDDATE2, 'YYYY/MM/DD HH24:MI')) BETWEEN 5 AND 11 THEN '"5am to 11am"-Morning'
+        WHEN EXTRACT(HOUR FROM TO_TIMESTAMP(v.CONVERTEDRECORDDATE2, 'YYYY/MM/DD HH24:MI')) BETWEEN 12 AND 14 THEN '"12pm to 14pm"-Noon'
+        WHEN EXTRACT(HOUR FROM TO_TIMESTAMP(v.CONVERTEDRECORDDATE2, 'YYYY/MM/DD HH24:MI')) BETWEEN 15 AND 17 THEN '"15pm to 17pm"-Afternoon'
+        WHEN EXTRACT(HOUR FROM TO_TIMESTAMP(v.CONVERTEDRECORDDATE2, 'YYYY/MM/DD HH24:MI')) BETWEEN 18 AND 22 THEN '"18pm to 22pm"-Evening'
+        ELSE '"After 22pm"-Midnight'
+    END AS TIME_OF_DAY,
 
     -- Session metrics
     COUNT(*) AS TOTAL_SESSIONS,
@@ -16,20 +26,21 @@ SELECT
 
     -- Duration buckets
     CASE  
-        WHEN DATEDIFF('minute', TIME '00:00:00', v.DURATION2) < 5  THEN 'Very Short'
-        WHEN DATEDIFF('minute', TIME '00:00:00', v.DURATION2) BETWEEN 5 AND 15  THEN 'Short'
-        WHEN DATEDIFF('minute', TIME '00:00:00', v.DURATION2) BETWEEN 16 AND 30 THEN 'Medium'
-        WHEN DATEDIFF('minute', TIME '00:00:00', v.DURATION2) BETWEEN 31 AND 60 THEN 'Long'
-        ELSE 'Very Long'
+        WHEN DATEDIFF('minute', TIME '00:00:00', v.DURATION2) < 5  THEN '"<5mins"-Very Short'
+        WHEN DATEDIFF('minute', TIME '00:00:00', v.DURATION2) BETWEEN 5 AND 15  THEN '"5mins to 15mins"-Short'
+        WHEN DATEDIFF('minute', TIME '00:00:00', v.DURATION2) BETWEEN 16 AND 30 THEN '"16mins to 30mins"-Medium'
+        WHEN DATEDIFF('minute', TIME '00:00:00', v.DURATION2) BETWEEN 31 AND 60 THEN '"31mins to 60mins"-Long'
+        ELSE '">60mins"-Very Long'
     END AS DURATION_BUCKET,
 
     -- Age segmentation
-    CASE
-        WHEN p.AGE BETWEEN 1 AND 12 THEN 'Kids'
-        WHEN p.AGE BETWEEN 13 AND 18 THEN 'Teens'
-        WHEN p.AGE BETWEEN 19 AND 35 THEN 'Youth'
-        WHEN p.AGE BETWEEN 36 AND 60 THEN 'Adults'
-        ELSE 'Senior Citizen'
+    
+    CASE 
+        WHEN p.AGE BETWEEN 1 AND 12 THEN '"1yr to 12yrs"-Kids'
+        WHEN p.AGE BETWEEN 13 AND 18 THEN '"13yrs to 18yrs"-Teens'
+        WHEN p.AGE BETWEEN 19 AND 35 THEN '"19yrs to 35yrs"-Youth'
+        WHEN p.AGE BETWEEN 36 AND 60 THEN '"36yrs to 60yrs"-Adults'
+        ELSE '">60yrs"-Senior Citizen'
     END AS AGE_BUCKET,
 
     -- Demographics
@@ -48,25 +59,33 @@ GROUP BY
     TO_DATE(TO_TIMESTAMP(v.CONVERTEDRECORDDATE2, 'YYYY/MM/DD HH24:MI')),
     CAST(TO_TIMESTAMP(v.CONVERTEDRECORDDATE2, 'YYYY/MM/DD HH24:MI') AS TIME),
     DAYNAME(TO_DATE(TO_TIMESTAMP(v.CONVERTEDRECORDDATE2, 'YYYY/MM/DD HH24:MI'))),
-   TO_CHAR(TO_TIMESTAMP(v.CONVERTEDRECORDDATE2, 'YYYY/MM/DD HH24:MI'), 'MM'),
+    TO_CHAR(TO_TIMESTAMP(v.CONVERTEDRECORDDATE2, 'YYYY/MM/DD HH24:MI'), 'MM'),
 
-    
+  CASE
+        WHEN EXTRACT(HOUR FROM TO_TIMESTAMP(v.CONVERTEDRECORDDATE2, 'YYYY/MM/DD HH24:MI')) BETWEEN 5 AND 11 THEN '"5am to 11am"-Morning'
+        WHEN EXTRACT(HOUR FROM TO_TIMESTAMP(v.CONVERTEDRECORDDATE2, 'YYYY/MM/DD HH24:MI')) BETWEEN 12 AND 14 THEN '"12pm to 14pm"-Noon'
+        WHEN EXTRACT(HOUR FROM TO_TIMESTAMP(v.CONVERTEDRECORDDATE2, 'YYYY/MM/DD HH24:MI')) BETWEEN 15 AND 17 THEN '"15pm to 17pm"-Afternoon'
+        WHEN EXTRACT(HOUR FROM TO_TIMESTAMP(v.CONVERTEDRECORDDATE2, 'YYYY/MM/DD HH24:MI')) BETWEEN 18 AND 22 THEN '"18pm to 22pm"-Evening'
+        ELSE '"After 22pm"-Midnight'
+    END,
+
     CASE  
-        WHEN DATEDIFF('minute', TIME '00:00:00', v.DURATION2) < 5  THEN 'Very Short'
-        WHEN DATEDIFF('minute', TIME '00:00:00', v.DURATION2) BETWEEN 5 AND 15  THEN 'Short'
-        WHEN DATEDIFF('minute', TIME '00:00:00', v.DURATION2) BETWEEN 16 AND 30 THEN 'Medium'
-        WHEN DATEDIFF('minute', TIME '00:00:00', v.DURATION2) BETWEEN 31 AND 60 THEN 'Long'
-        ELSE 'Very Long'
+        WHEN DATEDIFF('minute', TIME '00:00:00', v.DURATION2) < 5  THEN '"<5mins"-Very Short'
+        WHEN DATEDIFF('minute', TIME '00:00:00', v.DURATION2) BETWEEN 5 AND 15  THEN '"5mins to 15mins"-Short'
+        WHEN DATEDIFF('minute', TIME '00:00:00', v.DURATION2) BETWEEN 16 AND 30 THEN '"16mins to 30mins"-Medium'
+        WHEN DATEDIFF('minute', TIME '00:00:00', v.DURATION2) BETWEEN 31 AND 60 THEN '"31mins to 60mins"-Long'
+        ELSE '">60mins"-Very Long'
     END,
     
     CASE 
-        WHEN p.AGE BETWEEN 1 AND 12 THEN 'Kids'
-        WHEN p.AGE BETWEEN 13 AND 18 THEN 'Teens'
-        WHEN p.AGE BETWEEN 19 AND 35 THEN 'Youth'
-        WHEN p.AGE BETWEEN 36 AND 60 THEN 'Adults'
-        ELSE 'Senior Citizen'
+        WHEN p.AGE BETWEEN 1 AND 12 THEN '"1yr to 12yrs"-Kids'
+        WHEN p.AGE BETWEEN 13 AND 18 THEN '"13yrs to 18yrs"-Teens'
+        WHEN p.AGE BETWEEN 19 AND 35 THEN '"19yrs to 35yrs"-Youth'
+        WHEN p.AGE BETWEEN 36 AND 60 THEN '"36yrs to 60yrs"-Adults'
+        ELSE '">60yrs"-Senior Citizen'  
     END,
     
     p.GENDER,
     p.RACE,
     p.PROVINCE;
+
