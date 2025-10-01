@@ -23,6 +23,8 @@ The purpose of the analysis is to:
 
 * Snowflake – Data loading, cleaning, and transformation.
 
+* Excel (Pivot Table) - To create visualisation
+
 * Google Looker Studio – Dashboard creation and visualization.
 
 * Canva – Final presentation design.
@@ -77,7 +79,7 @@ The purpose of the analysis is to:
 * Created session metrics:
 
   - TOTAL_SESSIONS (count of sessions)
-
+    
   - TOTAL_DURATION_MIN (sum of minutes)
 
   - AVG_DURATION_MIN (average session duration)
@@ -98,11 +100,21 @@ The purpose of the analysis is to:
 
 * Saved as CSV for visualization in Google Looker Studio.
 
-* Open file as Excel, and change the month number to month name, i.e. 1 → Jan
-
 * Saved as CSV, open it on Notedpad: replaced none with Unknown and write the content for Race, and Gender starting with capital letters (male → Male).
+
+* Open file on Excel change the month number to month name, i.e. 1 → Jan and start to create graphs for my analysis.
+
+* Saved all the graphs as pictures to be uploaded on CANVA for presentation.
   
-**Step 5: Visualisation and Dashboards Creation (Google Looker Studio)**
+**Step 5: Presentation Report (Canva)**
+
+* Created presentation report on CANVA.
+
+* Uploaded all the saved graphs on CANVA.
+
+* Then compiled the report accordingly.
+
+**Step 6: Visualisation and Dashboards Creation (Google Looker Studio)**
 
 * User & Usage Trends – Sessions and duration over time.
 
@@ -112,11 +124,24 @@ The purpose of the analysis is to:
 
 * Channel & Geographic Insights – Top channels and provincial engagement.
 
-* Filters included: Date, Channel, Province, Age, Gender, Race, Duration Bucket.
-Visuals used: Line charts, bar charts, stacked bars, heatmaps, tables, maps, scatter plots.
-
-**Step 6: Presentation Report (Canva)**
-
 **📑 Conclusion**
 
-The raw data, processed data, SQL codes, and the final presentation report will be uploaded in this repository’s files for reference.
+This analysis converted BrightTV’s raw viewership data into practical insights for the CEO and CVM team.
+
+Key outcomes include:
+
+* Sports are the strongest driver of viewership, led by Supersport Live Events and the ICC Cricket World Cup.
+
+* Music and entertainment channels (Channel O, Trace TV) show consistent engagement, highlighting diverse audience interests.
+
+* Viewing patterns vary by time of day and week, with evenings and weekends recording the highest consumption.
+
+* Recommendations focused on leveraging sports content, cross-promoting entertainment, and targeted marketing to grow and retain BrightTV’s subscriber base.
+
+The repository contains: 
+
+* Raw datasets, processed dataset, and SQL transformation scripts.
+  
+* Visualization exports (graphs, dashboards).
+  
+* Final Canva presentation report.
