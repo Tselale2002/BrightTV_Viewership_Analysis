@@ -60,9 +60,9 @@ The purpose of the analysis is to:
 
 * Loaded CSV datasets into Snowflake.
 
-* Merged Viewership and UserProfile on UserID.
+* Merged Viewership and UserProfile on UserID using Left Join on.
 
-* Parsed timestamps into multiple granularities:
+* Converted timestamps into different levels of detail (date, time, day, month).:
 
   - RECORD_TS → full timestamp
 
@@ -72,6 +72,8 @@ The purpose of the analysis is to:
 
   - DAY_OF_WEEK → day name
 
+  - RECORD_MONTH → month number
+
 * Created session metrics:
 
   - TOTAL_SESSIONS (count of sessions)
@@ -79,6 +81,8 @@ The purpose of the analysis is to:
   - TOTAL_DURATION_MIN (sum of minutes)
 
   - AVG_DURATION_MIN (average session duration)
+
+* Defined time of the day segmentation: Morning, Noon, Afternoon, Evening, Midnight.
 
 * Defined duration buckets: Very Short, Short, Medium, Long, Very Long.
 
@@ -94,7 +98,11 @@ The purpose of the analysis is to:
 
 * Saved as CSV for visualization in Google Looker Studio.
 
-**Step 5: Dashboards Creation (Google Looker Studio)**
+* Open file as Excel, and change the month number to month name, i.e. 1 → Jan
+
+* Saved as CSV, open it on Notedpad: replaced none with Unknown and write the content for Race, and Gender starting with capital letters (male → Male).
+  
+**Step 5: Visualisation and Dashboards Creation (Google Looker Studio)**
 
 * User & Usage Trends – Sessions and duration over time.
 
