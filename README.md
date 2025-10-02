@@ -1,4 +1,5 @@
 ## BrightTV Viewership Analysis Case Study Project
+
 **📌 Objective**
 
 The objective of this case study is to support BrightTV’s CEO and the Customer Value Management (CVM) team in achieving their goal of growing the company’s subscription base during the current financial year.
@@ -30,6 +31,7 @@ The purpose of the analysis is to:
 * Canva – Final presentation design.
 
 **📂 Project Mind Map**
+
 **Step 1: Data Acquisition**
 
 * Received readily available raw data from BrightLearn.
@@ -114,15 +116,15 @@ The purpose of the analysis is to:
 
 * Then compiled the report accordingly.
 
-**Step 6: Visualisation and Dashboards Creation (Google Looker Studio)**
+**Step 6: Dashboards Creation (Databricks Platform)**
 
-* User & Usage Trends – Sessions and duration over time.
+Created Non-Interactive Dashboards:
 
-* Demographics & Consumption Patterns – Age, gender, race analysis.
+* Usage Trend Dashboard
+  
+* Factors Influencing Consumption
 
-* Peak Hours / Low-Consumption Days – Time-based heatmaps and tables.
-
-* Channel & Geographic Insights – Top channels and provincial engagement.
+* Demographics Dashboard
 
 **📑 Conclusion**
 
@@ -138,10 +140,4 @@ Key outcomes include:
 
 * Recommendations focused on leveraging sports content, cross-promoting entertainment, and targeted marketing to grow and retain BrightTV’s subscriber base.
 
-The repository contains: 
-
-* Raw datasets, processed dataset, and SQL transformation scripts.
-  
-* Visualization exports (graphs, dashboards).
-  
-* Final Canva presentation report.
+## THANK YOU##
